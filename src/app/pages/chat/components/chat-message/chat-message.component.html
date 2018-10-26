@@ -1,0 +1,11 @@
+<div class="d-flex chat-message">
+
+  <img [src]="message.sender.photoUrl" class="rounded-circle" alt="">
+<div class="d-flex flex-column">
+  <div class="name">
+    {{message.sender.firstName}} {{message.sender.lastName}}
+  </div>
+  <small class="timestamp"> {{message.createAt  }}</small>
+  <p> {{message.message}}</p> 
+</div>
+</div>

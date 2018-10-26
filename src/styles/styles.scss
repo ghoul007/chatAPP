@@ -2,8 +2,13 @@
 @import "variable";
 @import '../../node_modules/bootstrap/scss/bootstrap';
 
+
+.container-wrapper{
+    height:90vh!important;
+}
+           
 button{
-    width: 100%
+     width: 100%
 }
 
 body{

@@ -1,0 +1,22 @@
+@import "../../../../../styles/variable";
+
+.new-message-wrapper{
+    .input-group{
+        align-self: flex-end;
+
+        .form-control{
+            border:0;
+            background-color: $light-grey;
+
+            &:focus{
+                outline: 0 ;
+                box-shadow: none;
+            }
+        }
+
+        button{
+            width: 15%;
+            margin:0em 1em 0em 0em
+        }
+    }
+}
