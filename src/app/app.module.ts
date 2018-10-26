@@ -16,6 +16,9 @@ import { ChatroomWindowComponent } from './pages/chat/components/chatroom-window
 import { AlertService } from './services/alert.service';
 import { NgxLoadingModule } from 'ngx-loading';
 import { LoadingService } from './services/loading.service';
+import { AuthService } from './services/auth.service';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -36,10 +39,11 @@ import { LoadingService } from './services/loading.service';
     FormsModule,
     ReactiveFormsModule,
     AlertModule.forRoot(),
-    NgxLoadingModule 
+    NgxLoadingModule,
+    HttpClientModule
     
   ],
-  providers: [AlertService, LoadingService],
+  providers: [AlertService, LoadingService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

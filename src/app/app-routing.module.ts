@@ -3,10 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { signupComponent } from './pages/signup/signup.component';
 import { ChatComponent } from './pages/chat/chat.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: "", pathMatch: 'full', redirectTo: "/login" },
-  { path: "chat", component: ChatComponent },
+  { path: "chat", component: ChatComponent, canActivate: [] },
   { path: "login", component: LoginComponent },
   { path: "signup", component: signupComponent },
   { path: "**", redirectTo: "/login" }

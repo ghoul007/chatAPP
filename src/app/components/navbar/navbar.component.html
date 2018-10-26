@@ -3,15 +3,21 @@
   <span class="navbar-brand">ChatAPP</span>
   <div class="page-links">
     <ul class="navbar-nav">
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="auth.currentUser else loggout">
         <a routerLink="/chat" routerLinkActive="active">Chat</a>
       </li>
+      <li class="nav-item">
+        <a  (click)="auth.logout()" >Logout</a>
+      </li>
+  
+      <!-- <ng-template  #loggout> -->
       <li class="nav-item">
         <a routerLink="/login" routerLinkActive="active">Login</a>
       </li>
       <li class="nav-item">
         <a routerLink="/signup" routerLinkActive="active">Sinup</a>
       </li>
+      <!-- </ng-template> -->
     </ul>
   </div>
 
