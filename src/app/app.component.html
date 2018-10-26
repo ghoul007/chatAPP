@@ -1,5 +1,9 @@
 <app-navbar></app-navbar>
 
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+
+
 <div class="alert-wrapper">
     <alert *ngFor="let alert of alerts" [type]="alert.type" dissmissTimeout="5000" class="text-center">
         {{alert.text}}

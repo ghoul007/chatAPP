@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { AlertService } from '../../services/alert.service';
 import { Alert } from '../../classes/alert';
 import { AlertType } from '../../enums/alert-type.enum';
+import { LoadingService } from '../../services/loading.service';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -10,7 +11,10 @@ import { AlertType } from '../../enums/alert-type.enum';
 })
 export class signupComponent implements OnInit {
   public signupForm: FormGroup;
-  constructor(private fb: FormBuilder, private alertService: AlertService) { }
+  constructor(private fb: FormBuilder,
+    private alertService: AlertService,
+    private loadingService: LoadingService,
+  ) { }
 
   ngOnInit() {
     this.initForm();
@@ -28,12 +32,16 @@ export class signupComponent implements OnInit {
 
   submitForm() {
 
+
+    this.loadingService.loading.next(true)
     if (this.signupForm.valid) {
       const { email, password } = this.signupForm.value;
       console.log(email, password);
+      this.loadingService.loading.next(false)
     } else {
       const failedSignupAlert = new Alert("Please enter a calid informations ..", AlertType.Danger)
       this.alertService.alerts.next(failedSignupAlert);
+      this.loadingService.loading.next(false)
     }
 
 
