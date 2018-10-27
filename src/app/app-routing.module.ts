@@ -7,7 +7,13 @@ import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: "", pathMatch: 'full', redirectTo: "/login" },
-  { path: "chat", component: ChatComponent, canActivate: [] },
+  {
+    path: "chat", canActivate: [AuthGuard],
+    children: [
+      { path: "", component: ChatComponent },
+      { path: ":id", component: ChatComponent },
+    ]
+  },
   { path: "login", component: LoginComponent },
   { path: "signup", component: signupComponent },
   { path: "**", redirectTo: "/login" }

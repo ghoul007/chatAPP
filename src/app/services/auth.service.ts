@@ -16,6 +16,7 @@ import { switchMap } from 'rxjs/operators';
 export class AuthService {
 
   currentUser: Observable<User | null>
+  public user: User | null;
   constructor(private HttpClient: HttpClient,
     private router: Router,
     private alertService: AlertService,
@@ -34,7 +35,9 @@ export class AuthService {
       })
     )
 
-    // this.currentUser.subscribe(console.log)
+    this.currentUser.subscribe((user) => {
+      this.user = user;
+    })
   }
 
 
@@ -77,9 +80,10 @@ export class AuthService {
 
   public logout() {
 
-    this.afAuth.auth.signOut().then(()=>{
+    this.afAuth.auth.signOut().then(() => {
       this.router.navigate(['/login']);
       this.alertService.alerts.next(new Alert('you have been signed out')
-    });
+      );
+    })
   }
 }

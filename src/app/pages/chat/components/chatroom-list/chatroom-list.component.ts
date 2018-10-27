@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ChatroomService } from '../../../../services/chatroom.service';
 
 @Component({
   selector: 'app-chatroom-list',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatroomListComponent implements OnInit {
 
-  constructor() { }
+  constructor(public chartoomService: ChatroomService) { }
 
   ngOnInit() {
   }
