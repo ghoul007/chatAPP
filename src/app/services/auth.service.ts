@@ -25,7 +25,7 @@ export class AuthService {
 
     // this.currentUser = of(null);
     this.currentUser = this.afAuth.authState.pipe(
-       switchMap((user) => {
+      switchMap((user) => {
         if (user) {
           return this.db.doc<User>(`users/${user.uid}`).valueChanges();
         } else {
@@ -34,7 +34,7 @@ export class AuthService {
       })
     )
 
-    this.currentUser.subscribe(console.log)
+    // this.currentUser.subscribe(console.log)
   }
 
 
@@ -66,13 +66,20 @@ export class AuthService {
 
 
   public login(email: string, password: string) {
-    // TODO login implementation
-    return of(true);
+    return from(this.afAuth.auth.signInWithEmailAndPassword(email, password).then(
+      (user) => {
+        const userRef: AngularFirestoreDocument<User> = this.db.doc(`users/${user.user.uid}`);
+        return true
+      }
+    ).catch((error) => error))
+    // return of(true);
   }
 
   public logout() {
-    // TODO logout Implementation
-    this.router.navigate(['/login']);
-    this.alertService.alerts.next(new Alert('you have been signed out')
+
+    this.afAuth.auth.signOut().then(()=>{
+      this.router.navigate(['/login']);
+      this.alertService.alerts.next(new Alert('you have been signed out')
+    });
   }
 }

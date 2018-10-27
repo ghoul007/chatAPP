@@ -7,10 +7,14 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  currentUser: any = null;
 
   constructor(public auth: AuthService) { }
 
   ngOnInit() {
+    this.auth.currentUser.subscribe((user)=>{
+      this.currentUser = user;
+    })
   }
 
 
