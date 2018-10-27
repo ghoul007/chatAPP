@@ -19,7 +19,12 @@ import { LoadingService } from './services/loading.service';
 import { AuthService } from './services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from './guards/auth.guard';
-
+import { } from "firebase";
+import { AngularFireModule, } from "@angular/fire";
+import { AngularFireAuthModule } from "@angular/fire/auth";
+import { AngularFireStorageModule } from "@angular/fire/storage";
+import { AngularFirestoreModule } from "@angular/fire/firestore";
+import { environment } from '../environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,8 +45,13 @@ import { AuthGuard } from './guards/auth.guard';
     ReactiveFormsModule,
     AlertModule.forRoot(),
     NgxLoadingModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFireStorageModule,
+    AngularFirestoreModule
     
+
   ],
   providers: [AlertService, LoadingService, AuthService],
   bootstrap: [AppComponent]

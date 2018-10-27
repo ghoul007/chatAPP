@@ -40,30 +40,25 @@ export class signupComponent implements OnInit, OnDestroy {
 
 
   submitForm() {
-
-
-    this.loadingService.loading.next(true)
     if (this.signupForm.valid) {
+      this.loadingService.loading.next(true)
       const { firstName, lastName, email, password } = this.signupForm.value;
       this.subscriptions.push(this.authService.signup(firstName, lastName, email, password).subscribe(success => {
         if (success) {
-          this.loadingService.loading.next(false)
           this.router.navigate(['/chat']);
         } else {
-          this.loadingService.loading.next(false)
+          const failedSignupAlert = new Alert("there was a problem signup , try again ..", AlertType.Danger)
+          this.alertService.alerts.next(failedSignupAlert);
         }
-      }))
+        this.loadingService.loading.next(false)
+      })
+      )
     } else {
       const failedSignupAlert = new Alert("Please enter a calid informations ..", AlertType.Danger)
       this.alertService.alerts.next(failedSignupAlert);
       this.loadingService.loading.next(false)
     }
-
-
-
-
   }
-
 
   ngOnDestroy() {
     this.subscriptions.forEach(sub => sub.unsubscribe())
