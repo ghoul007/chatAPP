@@ -26,6 +26,8 @@ import { AngularFireStorageModule } from "@angular/fire/storage";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { environment } from '../environments/environment';
 import { ChatroomService } from './services/chatroom.service';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { EditProfileComponent } from './pages/edit-profile/edit-profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +40,8 @@ import { ChatroomService } from './services/chatroom.service';
     ChatroomTitleBarComponent,
     ChatMessageComponent,
     ChatroomWindowComponent,
+    ProfileComponent,
+    EditProfileComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-xs-12 col-sm-8 col-ms-6" *ngIf="user else noPhoto">
+      <img [src]="user?.photoUrl"  style="max-width:50vw!important" alt="">
+    </div>
+
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-xs-12 col-sm-8 col-ms-6 text-center name">
+      {{user?.firstName}} {{user?.lastName}}
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-xs-12 col-sm-8 col-ms-6 text-center name">
+      <blockquote class="blockquote">
+        {{user?.bio}}
+      </blockquote>
+    </div>
+  </div>
+
+  <div class="row justify-content-center" *ngIf="user?.id===current?.id">
+    <div class="col-xs-12 col-sm-8 col-ms-6 text-center name">
+      <button class="btn btn-primary" [routerLink]="'/profile/'+currentUser?.id + '/edit'">
+      Edit Profile
+      </button>
+    </div>
+  </div>
+</div>
+
+<ng-template #noPhoto>
+  No Photo
+</ng-template>

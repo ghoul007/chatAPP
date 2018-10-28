@@ -5,6 +5,9 @@
     <ul class="navbar-nav">
         <!-- *ngIf="currentUser"  -->
       <li class="nav-item"  *ngIf="currentUser" >
+        <a [routerLink]="'/profile/'+currentUser.id" routerLinkActive="active">Profile</a>
+      </li>
+      <li class="nav-item"  *ngIf="currentUser" >
         <a routerLink="/chat" routerLinkActive="active">Chat</a>
       </li>
       <li class="nav-item"  *ngIf="currentUser"  >

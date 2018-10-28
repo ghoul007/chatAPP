@@ -22,10 +22,19 @@ export class LoginComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router
-  ) {this.initForm(); }
+  ) { this.initForm(); }
 
   ngOnInit() {
-    this.returnUrl =  this.route.snapshot.queryParams['returnUrl'] || '/chat';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/chat';
+
+
+    this.subscriptions.push(
+      this.authService.currentUser.subscribe(user => {
+        if (!!user) {
+          this.router.navigateByUrl('/chat');
+        }
+      })
+    )
   }
 
   initForm() {
@@ -40,10 +49,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loadingService.loading.next(true)
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
-      this.subscriptions.push(this.authService.login(email,password).subscribe((success)=>{
-        if(success===true){
+      this.subscriptions.push(this.authService.login(email, password).subscribe((success) => {
+        if (success === true) {
           this.router.navigateByUrl(this.returnUrl);
-        }else{
+        } else {
           const failedLoginAlert = new Alert("yout email or password where invalid ..", AlertType.Danger)
           this.alertService.alerts.next(failedLoginAlert);
         }
